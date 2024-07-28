@@ -74,6 +74,13 @@ button.custom-link-ouline img {
   width: 12px;
 }
 
+.error {
+  color: rgb(212, 65, 65);
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
 @media (max-width: 720px) {
   button.custom-link-ouline {
     font-size: 12px;

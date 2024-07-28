@@ -2,6 +2,7 @@ import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/css";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./index.css";
 
@@ -13,6 +14,9 @@ import Products from "./pages/Products/Products.jsx";
 import ProductDetails from "./pages/ProductDetails/ProductDetails.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import HomeDesign from "./pages/HomeDesign/HomeDesign.jsx";
+import { AuthContextProvider } from "./components/context/Auth.jsx";
+
+import { CookiesProvider, useCookies } from "react-cookie";
 
 const router = createBrowserRouter([
   {
@@ -38,5 +42,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <CookiesProvider>
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
+  </CookiesProvider>
 );
