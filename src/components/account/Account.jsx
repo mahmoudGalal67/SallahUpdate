@@ -30,6 +30,7 @@ function MyVerticallyCenteredModal(props) {
     const email = e.target[0].value;
     const password = e.target[1].value;
     try {
+      setLoading(true);
       const { data } = await request({
         url: "/auth/login",
         method: "post",
@@ -40,6 +41,7 @@ function MyVerticallyCenteredModal(props) {
       setCookie("user", data.data.token, { path: "/" });
       dispatch({ type: "login", payload: data.data.user });
       toast.success("You have been logged in successfully");
+      setLoading(false);
       props.onHide();
     } catch (err) {
       setErr(err.response.data.message);
@@ -122,7 +124,7 @@ function Account({ modalShow, setModalShow }) {
       />
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         rtl={false}

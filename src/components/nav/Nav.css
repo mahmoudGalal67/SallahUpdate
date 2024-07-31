@@ -20,6 +20,9 @@ nav .wrapper {
 nav .item {
   font-size: 12px;
   text-align: center;
+}
+
+nav .item img {
   cursor: pointer;
 }
 

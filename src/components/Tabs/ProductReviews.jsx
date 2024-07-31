@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import client1 from "../../images/client1.jpg";
 import client2 from "../../images/client2.jfif";
 import client3 from "../../images/client3.jfif";
 import client4 from "../../images/client4.jfif";
+import { request } from "../utils/Request";
+import { useCookies } from "react-cookie";
+
+const reviews = [1, 2, 3, 4, 5];
 
 function ProductReviews() {
+  const [cookies, setCookie] = useCookies(["user"]);
+
+  const [reviewsNumber, setReviewsNumber] = useState(1);
+  const [comment, setComment] = useState("");
+
+  const addReview = async (e) => {
+    e.preventDefault();
+    try {
+      await request({
+        url: "/review/store",
+        method: "post",
+        withCredentials: true,
+        data: { rate: reviewsNumber, comment, product_id: 5 },
+        Authorization: `Bearer ${cookies?.user}`,
+      });
+      setComment("");
+      setReviewsNumber(1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <section>
       <div className="row">
@@ -15,38 +41,50 @@ function ProductReviews() {
             className="text-center mx-4 mt-3 h-auto py-3"
             style={{ backgroundColor: "#F8F8F8" }}
           >
-            4.5 من 5
+            {reviewsNumber} من 5
+            {/* <span>
+                <FaStar />
+              </span> */}
             <div className="mt-2">
-              <span>
-                <FaStar />
-              </span>
-              <span>
-                <FaStar />
-              </span>
-              <span>
-                <FaStar />
-              </span>
-              <span>
-                <FaStar />
-              </span>
-              <span style={{ color: "#546581" }}>
-                <FaRegStar />
-              </span>
+              {reviews.map((review, i) => (
+                <span key={i}>
+                  {i < reviewsNumber ? (
+                    <span>
+                      <FaStar
+                        style={{ margin: "3px", cursor: "pointer" }}
+                        onClick={() => setReviewsNumber(i + 1)}
+                      />
+                    </span>
+                  ) : (
+                    <FaRegStar
+                      style={{ margin: "3px", cursor: "pointer" }}
+                      onClick={() => setReviewsNumber(i + 1)}
+                    />
+                  )}
+                </span>
+              ))}
             </div>
             <p className="mt-2" style={{ color: "#546581" }}>
-              4.5 من 5{" "}
+              {reviewsNumber} من 5{" "}
             </p>
           </div>
-          <h5 className="mx-4 mt-4">أضف تعليقك </h5>
-          <textarea
-            cols={56}
-            className="h-25 mx-4 p-2 mt-3 rounded rounded-2"
-            placeholder=" برجاءأضف تعليقك .."
-          ></textarea>
-          <button className="btn btn-lg mx-4 mb-5 text-white mt-3">
-            {" "}
-            انشر تعليقك{" "}
-          </button>
+          <form onSubmit={addReview}>
+            <h5 className="mx-4 mt-4">أضف تعليقك </h5>
+            <textarea
+              cols={56}
+              className="h-25 mx-4 p-2 mt-3 rounded rounded-2"
+              placeholder=" برجاءأضف تعليقك .."
+              onChange={(e) => setComment(e.target.value)}
+              required
+            ></textarea>
+            <button
+              className="btn btn-lg mx-4 mb-5 text-white mt-3"
+              type="submit"
+            >
+              {" "}
+              انشر تعليقك{" "}
+            </button>
+          </form>
         </div>
         {/* col-4 */}
 

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Nav.css";
+
+import { ToastContainer, toast } from "react-toastify";
 
 import Container from "react-bootstrap/Container";
 import Account from "../account/Account";
@@ -9,9 +11,20 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/Auth";
+import { useCookies } from "react-cookie";
 
 function NavBar({ design }) {
   const [modalShow, setModalShow] = useState(false);
+  const { user, dispatch } = useContext(AuthContext);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
+  const logoOut = () => {
+    removeCookie("user", { path: "/" });
+    dispatch({ type: "logout" });
+    toast.info("You have been logged out successfully");
+  };
+
   return (
     <>
       <Account setModalShow={setModalShow} modalShow={modalShow} />
@@ -28,13 +41,27 @@ function NavBar({ design }) {
               </div>
             </Link>
           </div>
-          <div className="item flex " onClick={() => setModalShow(true)}>
-            <span>
-              مرحبا بك <br /> تسجيل دخول
-            </span>
-            <div className="img-wrapper flex">
-              <img src="user.svg" alt="" />
-            </div>
+          <div className="item flex ">
+            {!user ? (
+              <>
+                <span>
+                  مرحبا بك <br /> تسجيل دخول
+                </span>
+                <div
+                  className="img-wrapper flex"
+                  onClick={() => setModalShow(true)}
+                >
+                  <img src="user.svg" alt="" />
+                </div>
+              </>
+            ) : (
+              <>
+                <span>تسجيل خروج</span>
+                <div className="img-wrapper flex" onClick={logoOut}>
+                  <img src="user.svg" alt="" />
+                </div>
+              </>
+            )}
           </div>
           <div className="item search flex">
             <img src="search.svg" alt="" />
