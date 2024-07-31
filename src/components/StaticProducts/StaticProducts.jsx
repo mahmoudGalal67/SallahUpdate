@@ -1,9 +1,26 @@
-import React from "react";
+import Countdown from "react-countdown";
 
 import "./StaticProducts.css";
 import { Link } from "react-router-dom";
 
 function StaticProducts() {
+  const Finished = () => <span>You are good to go!</span>;
+  const renderer = ({ total, days, hours, minutes, seconds }) => {
+    if (total) {
+      // Render a countdown
+      return (
+        <span className="count-down">
+          <span>{days}</span>
+          <span>{hours}</span>
+          <span>{minutes}</span>
+          <span>{seconds}</span>
+        </span>
+      );
+    } else {
+      // Render a finished state
+      return <Finished />;
+    }
+  };
   return (
     <div className="StaticProducts">
       <div className="headers flex">
@@ -26,6 +43,14 @@ function StaticProducts() {
             <p className="desc">ساعة ذكية جديدة من سلسلة 8</p>
           </Link>
           <p className="info">سوار رياضي اسود - عادي.</p>
+          <div className="count-down-product">
+            <Countdown
+              date={Date.now() + 500000000}
+              intervalDelay={0}
+              precision={3}
+              renderer={renderer}
+            ></Countdown>
+          </div>
           <div className="price-wrapper">
             <div className="old">350.00 ر.س</div>
             <div className="new">250.00 رس</div>

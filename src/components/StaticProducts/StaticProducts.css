@@ -7,6 +7,25 @@
   margin-bottom: 45px;
 }
 
+.count-down-product {
+  width: 100%;
+}
+
+.count-down-product .count-down {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ef4444;
+}
+
+.count-down-product .count-down span {
+  background-color: #ef4444;
+  color: white;
+  border-radius: 5px;
+  margin: 3px;
+  padding: 1px 2px;
+}
+
 .StaticProducts .headers > div {
   display: flex;
   flex-direction: column;
