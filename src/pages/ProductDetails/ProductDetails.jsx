@@ -9,6 +9,13 @@ import Accordion from "react-bootstrap/Accordion";
 import "./ProductDetails.css";
 
 function ProductDetails() {
+  function randomIntFromInterval(min, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  const rndInt = randomIntFromInterval(100, 300);
+
   return (
     <div className="product-details">
       <Info />
@@ -40,6 +47,10 @@ function ProductDetails() {
               <img src="filledStar.svg" alt="" />
               <img src="filledStar.svg" alt="" />
             </div>
+          </div>
+          <div className="views">
+            يشاهد المنتج الان <span style={{ color: "#60f4d4" }}>{rndInt}</span>{" "}
+            شخص
           </div>
           <p>
             موبايل ابل ايفون 11 بشريحتين لاتصال وذاكرة داخلية 64 جيجا ويدعم

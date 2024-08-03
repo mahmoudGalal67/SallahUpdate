@@ -15,12 +15,15 @@ import Brands from "../../components/Brands/Brands";
 import Footer from "../../components/Footer/Footer";
 
 import "./Home.css";
+import FloatingButton from "../../components/FloatingButton/FloatingButton";
+import DynamicLinks from "../../components/DynamicLinks/DynamicLinks";
 
 function Home() {
   return (
     <div className="home">
       <Info />
       <Nav />
+      <DynamicLinks />
       <DynamicSlider />
       <Features />
       <StaticProducts />
@@ -36,6 +39,7 @@ function Home() {
       <Blogs />
       <Brands />
       <Footer />
+      <FloatingButton />
     </div>
   );
 }
