@@ -7,6 +7,8 @@ import {
   useSensor,
   useSensors,
   closestCorners,
+  MouseSensor,
+  TouchSensor,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import {
@@ -16,6 +18,7 @@ import {
 
 import "./HomeElements.css";
 import Section from "../Section/Section";
+import StaticBanner from "../StaticBanner/StaticBanner";
 
 const getSections = [
   {
@@ -45,12 +48,13 @@ const getSections = [
 ];
 
 function HomeElements() {
+  const [modalShow, setModalShow] = useState(false);
   const [sections, setSections] = useState(getSections);
+  const [activeEditModal, setactiveEditModal] = useState(null);
+
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
+    useSensor(MouseSensor, { activationConstraint: { distance: 10 } }),
+    useSensor(TouchSensor)
   );
 
   const getSectionsPos = (id) =>
@@ -70,28 +74,42 @@ function HomeElements() {
   };
 
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCorners}
-      onDragEnd={handleDragEnd}
-    >
-      <ul className="menu-sub home-sections">
-        <li className="menu-sub-title">
-          <label className="submenu-label back" htmlFor="sub-two">
-            عناصر الصفحه الرئيسية
-          </label>
-          <div className="arrow left">&#8250;</div>
-        </li>
-        <SortableContext
-          items={sections}
-          strategy={verticalListSortingStrategy}
-        >
-          {sections.map((el) => (
-            <Section key={el.id} id={el.id} title={el.title} />
-          ))}
-        </SortableContext>
-      </ul>
-    </DndContext>
+    <>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCorners}
+        onDragEnd={handleDragEnd}
+      >
+        <ul className="menu-sub home-sections">
+          <li className="menu-sub-title">
+            <label className="submenu-label back" htmlFor="sub-two">
+              عناصر الصفحه الرئيسية
+            </label>
+            <div className="arrow left">&#8250;</div>
+          </li>
+          <SortableContext
+            items={sections}
+            strategy={verticalListSortingStrategy}
+          >
+            {sections.map((el) => (
+              <div key={el.id}>
+                <Section
+                  id={el.id}
+                  title={el.title}
+                  setModalShow={setModalShow}
+                  setactiveEditModal={setactiveEditModal}
+                />
+              </div>
+            ))}
+          </SortableContext>
+        </ul>
+      </DndContext>
+      <StaticBanner
+        setModalShow={setModalShow}
+        modalShow={modalShow}
+        activeEditModal={activeEditModal}
+      />
+    </>
   );
 }
 

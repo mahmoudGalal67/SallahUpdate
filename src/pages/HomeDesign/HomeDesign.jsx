@@ -16,6 +16,7 @@ import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/SideBar";
 
 import "./HomeDesign.css";
+import StaticBanner from "../../components/StaticBanner/StaticBanner";
 
 function HomeDesign() {
   return (
@@ -38,6 +39,7 @@ function HomeDesign() {
       <Blogs />
       <Brands />
       <Footer />
+      <StaticBanner />
     </div>
   );
 }

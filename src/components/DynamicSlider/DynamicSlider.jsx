@@ -29,7 +29,8 @@ function DynamicSlider({ number }) {
             style={
               number === 2
                 ? {
-                    backgroundImage: "url(/assets/banner-CcPz-bx2.png);",
+                    backgroundImage: "url(/assets/banner-CcPz-bx2.png)",
+                    backgroundSize: "cover",
                   }
                 : null
             }
@@ -49,7 +50,8 @@ function DynamicSlider({ number }) {
             style={
               number === 2
                 ? {
-                    backgroundImage: "url(/assets/banner-CcPz-bx2.png);",
+                    backgroundImage: "url(/assets/banner-CcPz-bx2.png)",
+                    backgroundSize: "cover",
                   }
                 : null
             }
@@ -69,7 +71,7 @@ function DynamicSlider({ number }) {
             style={
               number === 2
                 ? {
-                    backgroundImage: "url(/assets/banner-CcPz-bx2.png);",
+                    backgroundImage: "url(/assets/banner-CcPz-bx2.png)",
                     backgroundSize: "cover",
                   }
                 : null
