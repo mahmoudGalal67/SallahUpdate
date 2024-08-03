@@ -84,17 +84,9 @@ function NavBar({ design }) {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <NavDropdown
-                  title="Dropdown"
-                  id="offcanvasNavbarDropdown-expand-lg"
-                >
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4"></NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Link className="flex" to="/design">
+                  Design
+                </Link>
                 <NavDropdown
                   title="Dropdown"
                   id="offcanvasNavbarDropdown-expand-lg"
