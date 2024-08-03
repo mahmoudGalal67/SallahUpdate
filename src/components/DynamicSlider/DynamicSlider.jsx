@@ -29,8 +29,7 @@ function DynamicSlider({ number }) {
             style={
               number === 2
                 ? {
-                    background:
-                      "url(../../../public/best-offer-bg.b14e705ab216aac1f108.png)",
+                    backgroundImage: "url(/assets/banner-CcPz-bx2.png);",
                   }
                 : null
             }
@@ -50,8 +49,7 @@ function DynamicSlider({ number }) {
             style={
               number === 2
                 ? {
-                    background:
-                      "url(../../../public/best-offer-bg.b14e705ab216aac1f108.png)",
+                    backgroundImage: "url(/assets/banner-CcPz-bx2.png);",
                   }
                 : null
             }
@@ -71,8 +69,8 @@ function DynamicSlider({ number }) {
             style={
               number === 2
                 ? {
-                    background:
-                      "url(../../../public/best-offer-bg.b14e705ab216aac1f108.png)",
+                    backgroundImage: "url(/assets/banner-CcPz-bx2.png);",
+                    backgroundSize: "cover",
                   }
                 : null
             }

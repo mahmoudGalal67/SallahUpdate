@@ -17,6 +17,7 @@ import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 import FloatingButton from "../../components/FloatingButton/FloatingButton";
 import DynamicLinks from "../../components/DynamicLinks/DynamicLinks";
+import GlobalCountDown from "../../components/GlobalCountDown/GlobalCountDown";
 
 function Home() {
   return (
@@ -31,6 +32,7 @@ function Home() {
       <SpecialProducts />
       <SPecialBanners />
       <CountdownProduct />
+      <GlobalCountDown />
       <DynamicPrducts />
       <Offers />
       <DynamicSlider number={2} />
